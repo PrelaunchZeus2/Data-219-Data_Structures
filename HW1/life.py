@@ -14,12 +14,12 @@ class Life():
 
 def main():
     B = createBoard(10, 10)
-    update1(B)
-    csplot.show(B)
-    update2(B)
-    csplot.show(B)
     updateRandom(B)
     csplot.show(B)
+    newB = createBoard(10, 10)
+    updateReversed(B, newB)
+    csplot.show(newB)
+
     
     csplot.done()
     
@@ -77,7 +77,25 @@ def updateRandom ( B ):
 				B[row][col] = 0
 			else: #cell is not on the boarder
 				B[row][col] = random.choice([0,1])
-    
+
+def updateReversed (oldB, newB):
+	'''Takes an old board and creates a new board where all of the cells of the old board are in the opposite state in the new board. except the outer edge which always
+	stays off'''
+	width = len(oldB[0])
+	height = len(oldB)
+	
+
+	for row in range(height):
+		for col in range(width):
+			if row == 0 or row == height - 1 or col == 0 or col == width - 1: #if cell is on the boarder set it to dead
+				newB[row][col] = 0
+			else: #cell is not on the boarder so it needs to be swapped
+				if oldB[row][col] == 0:
+					newB[row][col] = 1
+				else: 
+					newB[row][col] = 0
+        
+            
 
 if __name__ == '__main__':
 	main()
