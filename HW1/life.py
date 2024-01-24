@@ -1,4 +1,5 @@
 import csplot
+import time
 from time import sleep
 import sys
 import random
@@ -13,15 +14,7 @@ class Life():
 
 
 def main():
-    B = createBoard(10, 10)
-    updateRandom(B)
-    csplot.show(B)
-    newB = createBoard(10, 10)
-    updateReversed(B, newB)
-    csplot.show(newB)
-
-    
-    csplot.done()
+  life(10, 10)
     
 def createOneRow(n):
 	'''Ths Function takes in a number n and returns a list of n length with zeros as the elements.'''
@@ -94,6 +87,53 @@ def updateReversed (oldB, newB):
 					newB[row][col] = 1
 				else: 
 					newB[row][col] = 0
+
+
+def countNeighbors(row, col, B):
+	'''Takes in a row colunm pair and a board then counts the number of live cells in the 8 cells surrounding the given cell'''
+	neighbor_count = 0
+	for i in range(-1, 1):
+		for j in range(-1, 1):
+			if B[row + i][col + j] == 1 and (i != 0 or j != 0): #we dont want to count the cell itself
+				neighbor_count += 1
+	return neighbor_count
+
+def updateNextLife(oldB, newB):
+	'''This function creates a new board based on the rules of Conway's Game of Life
+	1. a cell that has fewer than 2 live neighbors dies
+	2. a cell that has more than 3 live neighbors dies
+	3. a dead cell with 3 live neighbors comes to life
+	4. all other cells maintain their state'''
+
+	width = len(oldB[0])
+	height = len(oldB)
+
+	for row in range(height):
+		for col in range(width):
+			if row == 0 or row == height - 1 or col == 0 or col == width - 1: #cell is on border
+				newB[row][col] = 0 #set to dead
+			else: #cell is not on border
+				neighbor_count = countNeighbors(row, col, oldB)
+				if neighbor_count > 2 or neighbor_count < 3: #to many or too few neighbors
+					newB[row][col] = 0
+				elif neighbor_count == 3 and oldB[row][col] == 0: #deead cell with 3 neighbors
+					newB[row][col] = 1
+				else: #everything else
+					newB[row][col] = oldB[row][col]
+
+			
+            
+def life (width, height):
+    '''will become John Conway's Game of Life'''
+    B = createBoard(width, height)
+    csplot.showAndClickInIdle(B)
+    
+    while True:
+        csplot.show(B)
+        time.sleep(0.25)
+        oldB = B
+        B = createBoard(width, height)
+        updateNextLife(oldB, B)
         
             
 
