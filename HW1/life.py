@@ -14,7 +14,8 @@ class Life():
 
 
 def main():
-  life(10, 10)
+
+    life(10, 10)
     
 def createOneRow(n):
 	'''Ths Function takes in a number n and returns a list of n length with zeros as the elements.'''
@@ -98,6 +99,7 @@ def countNeighbors(row, col, B):
 				neighbor_count += 1
 	return neighbor_count
 
+
 def updateNextLife(oldB, newB):
 	'''This function creates a new board based on the rules of Conway's Game of Life
 	1. a cell that has fewer than 2 live neighbors dies
@@ -114,26 +116,40 @@ def updateNextLife(oldB, newB):
 				newB[row][col] = 0 #set to dead
 			else: #cell is not on border
 				neighbor_count = countNeighbors(row, col, oldB)
-				if neighbor_count > 2 or neighbor_count < 3: #to many or too few neighbors
+				if neighbor_count <  2 or neighbor_count > 3: #to many or too few neighbors
 					newB[row][col] = 0
 				elif neighbor_count == 3 and oldB[row][col] == 0: #deead cell with 3 neighbors
 					newB[row][col] = 1
 				else: #everything else
 					newB[row][col] = oldB[row][col]
+	
+	return newB
 
-			
-            
+
 def life (width, height):
-    '''will become John Conway's Game of Life'''
+	'''will become John Conway's Game of Life'''
+	B = createBoard(width, height)
+	csplot.showAndClickInIdle(B)
+	
+	while True:
+		csplot.show(B)
+		time.sleep(0.25)
+		oldB = B
+		B = createBoard(width, height)
+		B = updateNextLife(oldB, B)
+  
+def life2 (width, height):
+    '''debug with random board'''
     B = createBoard(width, height)
-    csplot.showAndClickInIdle(B)
+    updateRandom(B)
     
     while True:
         csplot.show(B)
-        time.sleep(0.25)
+        time.sleep(0.5)
         oldB = B
         B = createBoard(width, height)
-        updateNextLife(oldB, B)
+        B = updateNextLife(oldB, B)
+		
         
             
 
