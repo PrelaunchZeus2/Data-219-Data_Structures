@@ -90,14 +90,14 @@ def updateReversed (oldB, newB):
 					newB[row][col] = 0
 
 
-def countNeighbors(row, col, B):
-	'''Takes in a row colunm pair and a board then counts the number of live cells in the 8 cells surrounding the given cell'''
-	alive_neighbor_count = 0
-	for i in range(-1, 1): #row
-		for j in range(-1, 1): #col
-			if B[row + i][col + j] == 1:
-				alive_neighbor_count = alive_neighbor_count + 1
-	return alive_neighbor_count
+def countNeighbors(row, col, board):
+    '''This function takes in a row and column and a board and returns the number of live neighbors that cell has.'''
+    count = 0
+    for i in range(max(0, row - 1), min(row + 2, len(board))):
+        for j in range(max(0, col - 1), min(col + 2, len(board[0]))):
+            count += board[i][j]
+    count -= board[row][col] # subtract the cell itself if it's alive
+    return count
 
 
 def updateNextLife(oldB, newB):
@@ -115,8 +115,10 @@ def updateNextLife(oldB, newB):
 			neighbor_count = countNeighbors(row, col, oldB)
 			if row == 0 or row == height - 1 or col == 0 or col == width - 1: #cell is on border
 				newB[row][col] = 0 #set to dead
-			elif neighbor_count <  2 or neighbor_count > 3: #to many or too few neighbors
+			elif neighbor_count <  2: #cell has less than 2 neighbors
 				newB[row][col] = 0 #set to dead
+			elif neighbor_count > 3: #cell has more than 3 neighbors
+				newB[row][col] = 0
 			elif neighbor_count == 3 and oldB[row][col] == 0: #dead cell with 3 neighbors
 				newB[row][col] = 1
 			else: #everything else
@@ -146,7 +148,7 @@ def life2 (width, height):
         time.sleep(0.5)
         oldB = B
         B = createBoard(width, height)
-        B = updateNextLife(oldB, B)
+        B = updateNextLife(B, oldB)
 		
         
             
