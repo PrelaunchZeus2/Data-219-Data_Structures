@@ -21,7 +21,8 @@ class Wordle(object):
        pass
 
     def numberOfKnownWords(self):
-       pass
+       num_known_words = len(self.knownWords)
+       return num_known_words
 
 
     # _Part 2: Implement this method._
@@ -67,12 +68,13 @@ class Wordle(object):
 
     # @return a new copy of list of known words.
     def getKnownWords(self):
-        pass
+        return self.knownWords.copy()
 
     
     # Prepare the game for playing by choosing a new secret word.
     def initGame(self):
-       pass
+       num_known_words = self.numberOfKnownWords()
+       self.secretWrord = self.knownWords[random.randint(0, num_known_words-1)]
 
 
     # Supply a guess and get a hint!
