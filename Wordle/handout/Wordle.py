@@ -18,11 +18,17 @@ from Hint import Hint
 class Wordle(object):
     """docstring for Wordle"""
     def __init__(self, file=None, wordList=[], length=0, minFreq=-1, maxFreq=-1):
-       pass
+       self.file = file
+       self.wordList = wordList
+       self.length = length
+       self.minFreq = minFreq
+       self.maxFreq = maxFreq
+       self.knownWords = self.loadWords(file, length, minFreq, maxFreq)
+       self.number_of_known_words = self.numberOfKnownWords()
 
     def numberOfKnownWords(self):
-       num_known_words = len(self.knownWords)
-       return num_known_words
+        num_Known_Words = len(self.knownWords)
+        return num_Known_Words
 
 
     # _Part 2: Implement this method._
@@ -52,12 +58,14 @@ class Wordle(object):
     # @param maxfreq - the maximum allowable frequenct for a loaded word; 0 indicates no maximum
     def loadWords(self, file, length, minFreq, maxFreq):
         '''This function loads the words into the game'''
+        knownWords = []
         with open(file, 'r') as inputFile:
             for line in inputFile:
                 word, freq = line.split()
             if freq >= minFreq and freq <= maxFreq:
                 if len(word) == length:
-                    self.knownWords.append(word)
+                    knownWords.append(word)
+        return knownWords
     
 
 
@@ -68,7 +76,7 @@ class Wordle(object):
 
     # @return a new copy of list of known words.
     def getKnownWords(self):
-        return self.knownWords.copy()
+        pass
 
     
     # Prepare the game for playing by choosing a new secret word.

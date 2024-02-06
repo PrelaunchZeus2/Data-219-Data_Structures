@@ -40,8 +40,11 @@ class Hint(object):
 		
 
 	def isWin(self):
-		pass
-
+		if self.guess == self.secretWord:
+			gameWon = True
+		else:
+			gameWon = False
+		return gameWon
 
 	# Display a hint
 
@@ -58,6 +61,11 @@ class Hint(object):
 	# Correctly placed  : st--e
 	# Incorrectly placed: --ta-
 	# Not in the puzzle : []
+ 
+	def generateHint(self):
+		
+		pass
+ 
 	def __repr__(self):
 		pass
 
