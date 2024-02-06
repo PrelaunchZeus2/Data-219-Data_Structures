@@ -97,6 +97,7 @@ class Wordle(object):
     def guess(self, g):
         '''This function returns a hint based on the guess the player makes'''
         
+        
 
 
 
