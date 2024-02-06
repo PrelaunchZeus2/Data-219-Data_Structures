@@ -18,14 +18,9 @@ from Hint import Hint
 class Wordle(object):
     """docstring for Wordle"""
     def __init__(self, file=None, wordList=[], length=0, minFreq=-1, maxFreq=-1):
-       self.file = file
-       self.wordList = wordList
-       self.length = length
-       self.minFreq = minFreq
-       self.maxFreq = maxFreq
-       self.knownWords = []
-       self.number_of_known_words = self.numberOfKnownWords()
-       self.secretWord = ''
+       if file:
+           self.knownWords = []
+           self.loadWords(file, length, minFreq, maxFreq)
 
     def numberOfKnownWords(self):
         self.numberOfKnownWords = len(self.knownWords)
@@ -60,7 +55,8 @@ class Wordle(object):
         '''This function loads the words into the game'''
         with open(file, 'r') as inputFile:
             for line in inputFile:
-                word, freq = line.split()
+                word = line.split(" ")[0]
+                freq = line.split(" ")[1]
             if freq >= minFreq and freq <= maxFreq:
                 if len(word) == length:
                     self.knownWords.append(word)
@@ -80,8 +76,7 @@ class Wordle(object):
     # Prepare the game for playing by choosing a new secret word.
     def initGame(self):
         '''This function returns a random word from the known word list as the secret word'''
-        num_known_words = self.numberOfKnownWords()
-        self.secretWord = self.knownWords[random.randint(0, num_known_words-1)]
+        self.secretWord = random.choice(self.knownWords)
 
 
     # Supply a guess and get a hint!
