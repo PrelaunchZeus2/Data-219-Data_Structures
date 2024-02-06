@@ -73,8 +73,10 @@ class Wordle(object):
     
     # Prepare the game for playing by choosing a new secret word.
     def initGame(self):
-       num_known_words = self.numberOfKnownWords()
-       self.secretWrord = self.knownWords[random.randint(0, num_known_words-1)]
+        '''This function returns a random word from the known word list as the secret word'''
+        num_known_words = self.numberOfKnownWords()
+        secretWord = self.knownWords[random.randint(0, num_known_words-1)]
+        return secretWord
 
 
     # Supply a guess and get a hint!
@@ -88,7 +90,8 @@ class Wordle(object):
     # @returns None if the guess is not the same length as the secret word
 
     def guess(self, g):
-        pass
+        '''This function returns a hint based on the guess the player makes'''
+        
 
 
 
