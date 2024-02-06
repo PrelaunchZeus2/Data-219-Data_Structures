@@ -23,12 +23,12 @@ class Wordle(object):
        self.length = length
        self.minFreq = minFreq
        self.maxFreq = maxFreq
-       self.knownWords = self.loadWords(file, length, minFreq, maxFreq)
+       self.knownWords = []
        self.number_of_known_words = self.numberOfKnownWords()
+       self.secretWord = ''
 
     def numberOfKnownWords(self):
-        num_Known_Words = len(self.knownWords)
-        return num_Known_Words
+        self.numberOfKnownWords = len(self.knownWords)
 
 
     # _Part 2: Implement this method._
@@ -58,14 +58,12 @@ class Wordle(object):
     # @param maxfreq - the maximum allowable frequenct for a loaded word; 0 indicates no maximum
     def loadWords(self, file, length, minFreq, maxFreq):
         '''This function loads the words into the game'''
-        knownWords = []
         with open(file, 'r') as inputFile:
             for line in inputFile:
                 word, freq = line.split()
             if freq >= minFreq and freq <= maxFreq:
                 if len(word) == length:
-                    knownWords.append(word)
-        return knownWords
+                    self.knownWords.append(word)
     
 
 
@@ -76,15 +74,14 @@ class Wordle(object):
 
     # @return a new copy of list of known words.
     def getKnownWords(self):
-        pass
+        return self.knownWords.copy()
 
     
     # Prepare the game for playing by choosing a new secret word.
     def initGame(self):
         '''This function returns a random word from the known word list as the secret word'''
         num_known_words = self.numberOfKnownWords()
-        secretWord = self.knownWords[random.randint(0, num_known_words-1)]
-        return secretWord
+        self.secretWord = self.knownWords[random.randint(0, num_known_words-1)]
 
 
     # Supply a guess and get a hint!

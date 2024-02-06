@@ -62,9 +62,6 @@ class Hint(object):
 	# Incorrectly placed: --ta-
 	# Not in the puzzle : []
  
-	def generateHint(self):
-		
-		pass
  
 	def __repr__(self):
 		pass

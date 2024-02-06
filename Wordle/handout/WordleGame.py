@@ -13,8 +13,8 @@ class WordleGame(object):
     #using the file is good for playing...
 	def startGame(self):
 		shortList = ['test']
-		puzzle = Wordle(wordList=shortList)
-		#puzzle = Wordle(file='norvig200.txt', length=5, minFreq=100000, maxFreq=0)
+		#puzzle = Wordle(wordList=shortList)
+		puzzle = Wordle(file='norvig200.txt', length=5, minFreq=100000, maxFreq=0)
 		puzzle.initGame()
 
 		
