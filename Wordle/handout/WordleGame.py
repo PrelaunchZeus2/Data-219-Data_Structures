@@ -12,7 +12,7 @@ class WordleGame(object):
 	#Here are two ways to create the puzzle. Using an array is good for testing
     #using the file is good for playing...
 	def startGame(self):
-		shortList = ['test']
+		shortList = ['state']
 		puzzle = Wordle(wordList=shortList)
 		#puzzle = Wordle(file='norvig200.txt', length=5, minFreq=100000, maxFreq=0)
 		puzzle.initGame()
@@ -22,6 +22,7 @@ class WordleGame(object):
 		while(self.nGuesses < self.maxGuesses):
 			self.nGuesses += 1
 			token = input('Your guess: ')
+			token = token.lower() #converts the guess to lower case so that case doesn't matter
 			print("Got:'"+token+"'")
 			h = puzzle.guess(token)
 			if h:
