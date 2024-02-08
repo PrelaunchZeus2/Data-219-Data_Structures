@@ -18,11 +18,13 @@ from Hint import Hint
 class Wordle(object):
     """docstring for Wordle"""
     def __init__(self, file=None, wordList=[], length=5, minFreq=-100000, maxFreq=-1):
-       if file != None:
+        if file:
            self.wordList = []
            self.loadWords(file, length, minFreq, maxFreq)
-           self.secretWord = ""
-           self.initGame()
+        else:
+            self.wordList = wordList
+        self.secretWord = ""
+        self.initGame()
 
     def numberOfKnownWords(self):
         self.numKnownWords = len(self.knownWords)
