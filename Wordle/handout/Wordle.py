@@ -18,7 +18,7 @@ from Hint import Hint
 class Wordle(object):
     """docstring for Wordle"""
     def __init__(self, file=None, wordList=[], length=0, minFreq=-1, maxFreq=-1):
-       if file:
+       if file != None:
            self.knownWords = []
            self.loadWords(file, length, minFreq, maxFreq)
            self.secretWord = ""
