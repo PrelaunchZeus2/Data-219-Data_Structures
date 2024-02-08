@@ -17,7 +17,7 @@ import random
 from Hint import Hint
 class Wordle(object):
     """docstring for Wordle"""
-    def __init__(self, file=None, wordList=[], length=5, minFreq=-100000, maxFreq=-1):
+    def __init__(self, file=None, wordList=[], length=5, minFreq=-0, maxFreq=100000):
         if file:
            self.wordList = []
            self.loadWords(file, length, minFreq, maxFreq)
@@ -59,11 +59,12 @@ class Wordle(object):
         '''This function loads the words into the game'''
         with open(file, 'r') as inputFile:
             for line in inputFile:
-                word = line.split(" ")[0]
-                freq = line.split(" ")[1]
-            if freq >= minFreq and freq <= maxFreq:
-                if len(word) == length:
-                    self.wordList.append(word)
+                wordAndFreq = line.split(" ")
+                word = wordAndFreq[0]
+                freq = int(wordAndFreq[1]) #convert the string to int for comparison
+                if freq >= minFreq and freq <= maxFreq:
+                    if len(word) == length:
+                        self.wordList.append(word)
     
 
 
