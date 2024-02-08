@@ -17,7 +17,7 @@ import random
 from Hint import Hint
 class Wordle(object):
     """docstring for Wordle"""
-    def __init__(self, file=None, wordList=[], length=0, minFreq=-1, maxFreq=-1):
+    def __init__(self, file=None, wordList=[], length=5, minFreq=-100000, maxFreq=-1):
        if file != None:
            self.knownWords = []
            self.loadWords(file, length, minFreq, maxFreq)
