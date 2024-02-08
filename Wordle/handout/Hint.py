@@ -36,7 +36,12 @@
 class Hint(object):
 	"""docstring for Hint"""
 	def __init__(self, guess, secretWord):
-		pass
+		self.guess = guess
+		self.secretWord = secretWord
+		self.correctlyPlaced = ""
+		self.incorrectlyPlaced = ""
+		self.notInPuzzle = ""
+		self.getHint()
 		
 
 	def isWin(self):
@@ -45,6 +50,28 @@ class Hint(object):
 		else:
 			gameWon = False
 		return gameWon
+	
+	def getHint(self):
+		"""This function should iterate through the guessed word and the secret word letter by letter and add the correctly placed letters to the correctlyPlaced string, the incorrectly placed Letters to the 
+		incorrectlyPlaced String, and finally the letters that are not in the puzzle to the notInPuzzle string."""
+		count = 0
+		while count < len(self.secretWord): #iterate through each letter of the guess and secret word which need to be the same size
+			if self.guess[count] == self.secretWord[count]:
+				self.correctlyPlaced.append(self.guess[count])
+				self.incorrectlyPlaced.append("-")
+				self.notInPuzzle.append("-")
+				count += 1
+			elif self.guess[count] in self.secretWord:
+				self.correctlyPlaced.append("-")
+				self.incorrectlyPlaced.append(self.guess[count])
+				self.notInPuzzle.append("-")
+				count += 1
+			else:
+				self.correctlyPlaced.append("-")
+				self.incorrectlyPlaced.append("-")
+				self.notInPuzzle.append(self.guess[count])
+				count += 1
+
 
 	# Display a hint
 

@@ -21,9 +21,11 @@ class Wordle(object):
        if file:
            self.knownWords = []
            self.loadWords(file, length, minFreq, maxFreq)
+           self.secretWord = ""
+           self.initGame()
 
     def numberOfKnownWords(self):
-        self.numberOfKnownWords = len(self.knownWords)
+        self.numKnownWords = len(self.knownWords)
 
 
     # _Part 2: Implement this method._
@@ -75,7 +77,7 @@ class Wordle(object):
     
     # Prepare the game for playing by choosing a new secret word.
     def initGame(self):
-        '''This function returns a random word from the known word list as the secret word'''
+        '''This function chooses a random word from the known word list as the secret word'''
         self.secretWord = random.choice(self.knownWords)
 
 
@@ -91,6 +93,10 @@ class Wordle(object):
 
     def guess(self, g):
         '''This function returns a hint based on the guess the player makes'''
+        if len(g) != len(self.secretWord):
+            return
+        else: 
+            return Hint(g, self.secretWord)
         
         
 
