@@ -19,7 +19,7 @@ class Wordle(object):
     """docstring for Wordle"""
     def __init__(self, file=None, wordList=[], length=5, minFreq=-100000, maxFreq=-1):
        if file != None:
-           self.knownWords = []
+           self.wordList = []
            self.loadWords(file, length, minFreq, maxFreq)
            self.secretWord = ""
            self.initGame()
@@ -61,7 +61,7 @@ class Wordle(object):
                 freq = line.split(" ")[1]
             if freq >= minFreq and freq <= maxFreq:
                 if len(word) == length:
-                    self.knownWords.append(word)
+                    self.wordList.append(word)
     
 
 
@@ -72,13 +72,13 @@ class Wordle(object):
 
     # @return a new copy of list of known words.
     def getKnownWords(self):
-        return self.knownWords.copy()
+        return self.wordList.copy()
 
     
     # Prepare the game for playing by choosing a new secret word.
     def initGame(self):
         '''This function chooses a random word from the known word list as the secret word'''
-        self.secretWord = random.choice(self.knownWords)
+        self.secretWord = random.choice(self.wordList)
 
 
     # Supply a guess and get a hint!
