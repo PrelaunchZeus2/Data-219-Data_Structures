@@ -65,7 +65,7 @@ class BST(object):
         return False
     
 def inOrderWalk(n):
-    """This function performs an in-order walk of the tree."""
+    """This function performs an in-order walk of the tree. Printing the data of each node"""
     if n == None: 
         return
         
@@ -73,5 +73,11 @@ def inOrderWalk(n):
     print(n.data)
     inOrderWalk(n.right)
         
-    
+mytree = BST() #create tree
+mytree.insert(5) #add 5 as the new first item in the tree
+mytree.insert(3) #add 3 as the new first item, the tree now contains {3, 5}
+mytree.insert(7) #add 7 as the new first item, the tree now contains {3, 5, 7}
+mytree.insert(2) #add 2 as the new first item, the tree now contains {2, 3, 5, 7}
+mytree.search(2) #search for 2 in the tree
+inOrderWalk(mytree.root) #print the tree in order
                 
