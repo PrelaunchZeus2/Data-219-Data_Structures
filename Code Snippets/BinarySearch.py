@@ -64,4 +64,14 @@ class BST(object):
                 cursor = cursor.right
         return False
     
+def inOrderWalk(n):
+    """This function performs an in-order walk of the tree."""
+    if n == None: 
+        return
+        
+    inOrderWalk(n.left)
+    print(n.data)
+    inOrderWalk(n.right)
+        
+    
                 
