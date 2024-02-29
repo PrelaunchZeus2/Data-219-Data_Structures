@@ -72,12 +72,31 @@ def inOrderWalk(n):
     inOrderWalk(n.left)
     print(n.data)
     inOrderWalk(n.right)
+    
+def preOrderWalk(n):
+    """This function performs a pre-order walk of the tree. Printing the data of each node"""
+    if n == None: 
+        return
         
-mytree = BST() #create tree
-mytree.insert(5) #add 5 as the new first item in the tree
-mytree.insert(3) #add 3 as the new first item, the tree now contains {3, 5}
-mytree.insert(7) #add 7 as the new first item, the tree now contains {3, 5, 7}
-mytree.insert(2) #add 2 as the new first item, the tree now contains {2, 3, 5, 7}
-mytree.search(2) #search for 2 in the tree
-inOrderWalk(mytree.root) #print the tree in order
+    print(n.data)
+    preOrderWalk(n.left)
+    preOrderWalk(n.right)
+
+def postOrderWalk(n):
+    """This function performs a post-order walk of the tree. Printing the data of each node"""
+    if n == None: 
+        return
+        
+    postOrderWalk(n.left)
+    postOrderWalk(n.right)
+    print(n.data)
+    
+def main(): 
+    mytree = BST() #create tree
+    mytree.insert(5) #add 5 as the new first item in the tree
+    mytree.insert(3) #add 3 as the new first item, the tree now contains {3, 5}
+    mytree.insert(7) #add 7 as the new first item, the tree now contains {3, 5, 7}
+    mytree.insert(2) #add 2 as the new first item, the tree now contains {2, 3, 5, 7}
+    mytree.search(2) #search for 2 in the tree
+    inOrderWalk(mytree.root) #print the tree in order
                 
