@@ -38,6 +38,18 @@ class BST(object):
         """This function calculates and returns the height of thee tree.
         @return: The height of the tree."""
         pass
+    
+    def remove(self, data):
+        """This function removes a node from the BS Tree.
+        @param the data of the node to remove"""
+        pass
+        #find node
+        #check if node has children
+        #if no children set node above.left/right to None
+        #if it only has one just copy next node to node above right or left then remove the node.
+        #if it has 2 children you need to use minimal reordering principals to find a suitable candidate node (one of the children)
+        #to replace the node that is being removed.
+        #update size and height
         
     def search(self, data):
         """This function searches for a node in the BS Tree.
@@ -51,4 +63,5 @@ class BST(object):
             else:
                 cursor = cursor.right
         return False
+    
                 
