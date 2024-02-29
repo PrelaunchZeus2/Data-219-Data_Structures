@@ -20,11 +20,35 @@ class BST(object):
             self.size += 1
             self.height = 0
         else: #tree is not empty
-            if self.root.data > data: #go left
-                pass
+            cursor = self.root
+            while cursor != None: #navigate to find the nodes with no children
+                if cursor.data > data: #go left
+                    cursor = cursor.left
+                elif cursor.data > data #go right
+                    cursor = cursor.right
+                else: #duplicate data
+                    return
+            #we are at the end of the branch in the right place to insert the new node
+            #while loop escapes when cursor is None after checking data in last node
+            cursor = temp
+            self.size += 1
+            self.height = self.getHeight()
             
-            elif self.root.data < data: #go right
-                pass
-            
-            else: #duplicate data
-                pass
+    def getHeight(self):
+        """This function calculates and returns the height of thee tree.
+        @return: The height of the tree."""
+        pass
+        
+    def search(self, data):
+        """This function searches for a node in the BS Tree.
+        @param data: The data to search for."""
+        cursor = self.root
+        while cursor != None:
+            if cursor.data == data:
+                return True
+            elif cursor.data > data:
+                cursor = cursor.left
+            else:
+                cursor = cursor.right
+        return False
+                
