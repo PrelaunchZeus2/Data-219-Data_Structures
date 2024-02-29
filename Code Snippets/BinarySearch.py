@@ -24,7 +24,7 @@ class BST(object):
             while cursor != None: #navigate to find the nodes with no children
                 if cursor.data > data: #go left
                     cursor = cursor.left
-                elif cursor.data > data #go right
+                elif cursor.data > data: #go right
                     cursor = cursor.right
                 else: #duplicate data
                     return
