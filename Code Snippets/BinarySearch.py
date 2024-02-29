@@ -1,3 +1,4 @@
+# This file contains a simple implementation of a Binary Search Tree (BST) in Python.
 class Node(object):
     def __init__(self, data, next = None):
         self.data = data
@@ -99,4 +100,7 @@ def main():
     mytree.insert(2) #add 2 as the new first item, the tree now contains {2, 3, 5, 7}
     mytree.search(2) #search for 2 in the tree
     inOrderWalk(mytree.root) #print the tree in order
+    
+if __name__ == "__main__":
+    main()
                 
