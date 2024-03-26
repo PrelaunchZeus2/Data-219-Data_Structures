@@ -22,15 +22,18 @@ class Calculator(object):
 		if len(self.stack) < self.maxSize:
 			self.stack.append(value)
 		else:
+			raise Exception("Stack is full.")
 			return False
+
 
 	# _Part 3: Implement this method_
 
-	# Pop the top value off the stack
+	# Pop the top value off the stack.
 	# Return None if the stack is currently empty.
 	def pop(self):
 		if len(self.stack) == 0:
 			return None
+			raise Exception("Stack is empty.")
 		else:
 			item = self.stack[0]
 			del self.stack[0]
