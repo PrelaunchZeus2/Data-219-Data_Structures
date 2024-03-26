@@ -61,10 +61,13 @@ class Calculator(object):
 	# Return None if a specified operator is unknown.
 
 	def calculate(self, inputString):
-		calcList = inputString.split(" ")
-		for i in calcList:
-			if i.isnumeric():
-       			self.push(i)	
+		calcTokenList = inputString.split(" ")
+		for token in calcTokenList:
+			if token.isnumeric():
+				self.push(int(token))
+        
+          
+        	
 
 
 	def getVariable(self, var):
