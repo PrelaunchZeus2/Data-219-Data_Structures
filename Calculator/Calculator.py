@@ -67,7 +67,13 @@ class Calculator(object):
 		calcTokenList = inputString.split(" ")
 		for token in calcTokenList:
 			if token.isnumeric():
-				self.push(float(token))
+				self.push(int(token))
+			elif token == "x":
+				self.push(int(self.x))
+			elif token == "y":
+				self.push(int(self.y))
+			elif token == "z":
+				self.push(int(self.z))
 			elif token == "+":
 				self.push(self.pop() + self.pop())
 			elif token == "*":
@@ -81,11 +87,11 @@ class Calculator(object):
 			elif token == "lg":
 				self.push(math.log(self.pop(), 2))
 			elif token == "setx":
-				pass
+				self.x = self.pop()
 			elif token == "sety":
-				pass
+				self.y = self.pop()
 			elif token == "setz":
-				pass
+				self.z = self.pop()
 			else:
 				return None
 		return self.pop()
