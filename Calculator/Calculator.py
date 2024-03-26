@@ -9,6 +9,9 @@ class Calculator(object):
 	def __init__(self, maxSize):
 		self.maxSize = maxSize
 		self.stack = []
+		self.x = 0
+		self.y = 0
+		self.z = 0
 
 	# _Part 2: Implement this method_
 
@@ -64,7 +67,28 @@ class Calculator(object):
 		calcTokenList = inputString.split(" ")
 		for token in calcTokenList:
 			if token.isnumeric():
-				self.push(int(token))
+				self.push(float(token))
+			elif token == "+":
+				self.push(self.pop() + self.pop())
+			elif token == "*":
+				self.push(self.pop() * self.pop())
+			elif token == "-":
+				self.push(self.pop() - self.pop())
+			elif token == "/":
+				self.push(self.pop() / self.pop())
+			elif token == "^":
+				self.push(math.pow(self.pop(), self.pop()))
+			elif token == "lg":
+				self.push(math.log(self.pop(), 2))
+			elif token == "setx":
+				pass
+			elif token == "sety":
+				pass
+			elif token == "setz":
+				pass
+			else:
+				return None
+		return self.pop()
         
           
         	
