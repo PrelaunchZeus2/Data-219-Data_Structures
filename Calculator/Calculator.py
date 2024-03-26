@@ -8,7 +8,7 @@ class Calculator(object):
 	# @param maxSize - number of spaces in the stack
 	def __init__(self, maxSize):
 		self.maxSize = maxSize
-		self.stack = ["None"]
+		self.stack = []
 
 	# _Part 2: Implement this method_
 
@@ -26,9 +26,12 @@ class Calculator(object):
 	# Pop the top value off the stack
 	# Return None if the stack is currently empty.
 	def pop(self):
-		item = self.stack[0]
-		del self.stack[0]
-		return item
+		if len(self.stack) == 0:
+			return None
+		else:
+			item = self.stack[0]
+			del self.stack[0]
+			return item
 
 	# _Part 4: Implement this method_
 
@@ -58,7 +61,11 @@ class Calculator(object):
 	# Return None if a specified operator is unknown.
 
 	def calculate(self, inputString):
-		pass
+		calcList = inputString.split(" ")
+		for i in calcList:
+			if i.isnumeric():
+       			self.push(i)	
+
 
 	def getVariable(self, var):
 		pass
