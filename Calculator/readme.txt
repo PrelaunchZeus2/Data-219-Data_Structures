@@ -1,0 +1,4 @@
+This assignment seems to work well, The example code provided runs and returns the proper answers. I added some thrown exceptions for when the stack is too large or too small because I figured that my regular calculator can do that and I wanted to experiment with exceptions in python.
+I did have one extra question or comment, I didnt really understand what the get variables function was for. I ended up just adding a x, y, z, attribute to the calculator object and used that to store the numbers that get assigned to it. Was there supposed to be extra variables in the get variables function or was I supposed to call that when i was setting the variables based on the calculation string token instead of just setting the variables in that method.
+Thanks,
+JS
