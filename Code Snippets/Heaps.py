@@ -28,4 +28,9 @@ heapq.heappop(mylist, 44)
 
 print("heap after changes:", (list(mylist)))
 
+#Heap internal accessors
+#Parent return abolute i/2
+#Left child return 2i
+#Right child return 2i + 1
+
 
