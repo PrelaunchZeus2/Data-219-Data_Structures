@@ -14,7 +14,7 @@ class WordleGame(object):
 	def startGame(self):
 		shortList = ['state']
 		#puzzle = Wordle(wordList=shortList)
-		puzzle = Wordle(file='norvig200.txt', length=5, minFreq=0, maxFreq=10000000000000000)
+		puzzle = Wordle(file=r'Wordle\handout\norvig200.txt', length=5, minFreq=0, maxFreq=10000000000000000)
 		puzzle.initGame()
 
 		

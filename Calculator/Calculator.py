@@ -9,9 +9,7 @@ class Calculator(object):
 	def __init__(self, maxSize):
 		self.maxSize = maxSize
 		self.stack = []
-		self.x = 0
-		self.y = 0
-		self.z = 0
+		self.x = self.y = self.z = 0
 
 	# _Part 2: Implement this method_
 
